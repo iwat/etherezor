@@ -19,6 +19,6 @@ export class DashboardComponent implements OnInit {
 
   getAddresses(): void {
     this.addressService.getAddresses()
-      .subscribe(addresses => this.addresses = addresses.slice(1, 5));
+      .subscribe(addresses => this.addresses = addresses.slice(0, 4));
   }
 }

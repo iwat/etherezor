@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Address } from '../address';
-import { ADDRESSES } from '../mock-addresses';
+import { AddressService } from '../address.service';
+
 
 @Component({
   selector: 'app-addresses',
@@ -9,16 +11,22 @@ import { ADDRESSES } from '../mock-addresses';
 })
 export class AddressesComponent implements OnInit {
 
-  addresses = ADDRESSES;
+  addresses: Address[];
 
   selectedAddress: Address;
 
-  constructor() { }
+  constructor(private addressService: AddressService) { }
 
   ngOnInit() {
+    this.getAddresses();
   }
 
   onSelect(address: Address): void {
     this.selectedAddress = address;
+  }
+
+  getAddresses(): void {
+    this.addressService.getAddresses()
+      .subscribe(addresses => this.addresses = addresses);
   }
 }

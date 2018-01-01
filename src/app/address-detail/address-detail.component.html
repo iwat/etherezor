@@ -1,0 +1,11 @@
+<div *ngIf="address">
+
+  <h2>{{ address.label | uppercase }} Details</h2>
+  <div><span>hex: </span>{{address.hex}}</div>
+  <div>
+    <label>label:
+      <input [(ngModel)]="address.label" placeholder="label"/>
+    </label>
+  </div>
+
+</div>

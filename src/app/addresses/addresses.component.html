@@ -7,12 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedAddress">
-  <h2>{{ selectedAddress.label | uppercase }} Details</h2>
-  <div><span>hex: </span>{{selectedAddress.hex}}</div>
-  <div>
-    <label>label:
-      <input [(ngModel)]="selectedAddress.label" placeholder="label">
-    </label>
-  </div>
-</div>
+<app-address-detail [address]="selectedAddress"></app-address-detail>

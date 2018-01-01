@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from '../address';
+import { ADDRESSES } from '../mock-addresses';
 
 @Component({
   selector: 'app-addresses',
@@ -7,14 +8,17 @@ import { Address } from '../address';
   styleUrls: ['./addresses.component.css']
 })
 export class AddressesComponent implements OnInit {
-  address: Address = {
-    hex: '0x19fc',
-    label: 'Main'
-  };
+
+  addresses = ADDRESSES;
+
+  selectedAddress: Address;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSelect(address: Address): void {
+    this.selectedAddress = address;
+  }
 }

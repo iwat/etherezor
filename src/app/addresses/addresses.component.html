@@ -1,9 +1,9 @@
 <h2>My Addresses</h2>
 <ul class="addresses">
-  <li *ngFor="let address of addresses"
-    [class.selected]="address === selectedAddress"
-    (click)="onSelect(address)">
-    <span class="badge">{{address.hex}}</span> {{address.label}}
+  <li *ngFor="let address of addresses">
+    <a routerLink="/detail/{{address.hex}}">
+      <span class="badge">{{address.hex}}</span> {{address.label}}
+    </a>
   </li>
 </ul>
 

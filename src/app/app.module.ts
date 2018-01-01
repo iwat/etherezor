@@ -9,6 +9,8 @@ import { AddressDetailComponent } from './address-detail/address-detail.componen
 import { AddressService } from './address.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -16,11 +18,13 @@ import { MessageService } from './message.service';
     AppComponent,
     AddressesComponent,
     AddressDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [AddressService, MessageService],
   bootstrap: [AppComponent]

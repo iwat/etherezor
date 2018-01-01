@@ -1,4 +1,4 @@
-<div *ngIf="address">
+<div *ngIf="address" class="col-sm">
   <h2>{{ address.label | uppercase }} Details</h2>
   <div><span>hex: </span>{{address.hex}}</div>
   <div>
@@ -6,5 +6,5 @@
       <input [(ngModel)]="address.label" placeholder="label"/>
     </label>
   </div>
-  <button (click)="goBack()">go back</button>
+  <button (click)="goBack()" class="btn">go back</button>
 </div>

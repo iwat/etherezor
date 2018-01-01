@@ -1,10 +1,12 @@
-<h2>My Addresses</h2>
-<ul class="addresses">
-  <li *ngFor="let address of addresses">
-    <a routerLink="/detail/{{address.hex}}">
-      <span class="badge">{{address.hex}}</span> {{address.label}}
-    </a>
-  </li>
-</ul>
+<div class="col-sm">
+  <h2>My Addresses</h2>
+  <ul class="addresses">
+    <li *ngFor="let address of addresses">
+      <a routerLink="/detail/{{address.hex}}">
+        <span class="badge">{{address.hex}}</span> {{address.label}}
+      </a>
+    </li>
+  </ul>
 
-<app-address-detail [address]="selectedAddress"></app-address-detail>
+  <app-address-detail [address]="selectedAddress"></app-address-detail>
+</div>

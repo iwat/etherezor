@@ -1,16 +1,15 @@
+import { NgModule }      from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
-
-import { AppComponent } from './app.component';
-import { AddressesComponent } from './addresses/addresses.component';
+import { AddressService }         from './address.service';
 import { AddressDetailComponent } from './address-detail/address-detail.component';
-import { AddressService } from './address.service';
-import { MessagesComponent } from './messages/messages.component';
-import { MessageService } from './message.service';
-import { AppRoutingModule } from './/app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddressesComponent }     from './addresses/addresses.component';
+import { AppComponent }           from './app.component';
+import { AppRoutingModule }       from './app-routing.module';
+import { DashboardComponent }     from './dashboard/dashboard.component';
+import { MessageService }         from './message.service';
+import { MessagesComponent }      from './messages/messages.component';
 
 
 @NgModule({
@@ -22,9 +21,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule
   ],
   providers: [AddressService, MessageService],
   bootstrap: [AppComponent]

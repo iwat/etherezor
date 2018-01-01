@@ -1,7 +1,17 @@
-<h1>{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/addresses">Addresses</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+      <h1>{{ title }}</h1>
+    </div>
+  </div>
+  <nav class="nav">
+    <a class="nav-link" role="button" routerLink="/dashboard">Dashboard</a>
+    <a class="nav-link" role="button" routerLink="/addresses">Addresses</a>
+  </nav>
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="row">
+    <app-messages></app-messages>
+  </div>
+</div>

@@ -34,13 +34,16 @@ export class AddressDetailComponent implements OnInit {
     this.addressService.getAddress(id)
       .subscribe((address) => {
         this.address = address;
+        if (address == null) {
+          return;
+        }
         this.web3.eth.getBalance(address.hex)
           .then((success) => {
             console.log(success);
           })
           .catch((reason) => {
             console.log(reason);
-          })
+          });
       });
   }
 

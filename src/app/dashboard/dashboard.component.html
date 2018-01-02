@@ -1,4 +1,11 @@
-<div class="col-sm">
+<div class="col">
+  <h3>Devices</h3>
+  <ul>
+    <li *ngFor="let device of devices">
+      {{device.features.label}}
+    </li>
+  </ul>
+
   <h3>Top Addresses</h3>
   <div class="grid grid-pad">
     <a *ngFor="let address of addresses"
@@ -10,3 +17,4 @@
     </a>
   </div>
 </div>
+<app-pin-dialog (messageEvent)="receiveMessage($event)"></app-pin-dialog>

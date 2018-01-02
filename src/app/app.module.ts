@@ -8,8 +8,11 @@ import { AddressesComponent }     from './addresses/addresses.component';
 import { AppComponent }           from './app.component';
 import { AppRoutingModule }       from './app-routing.module';
 import { DashboardComponent }     from './dashboard/dashboard.component';
+import { MaskPipe }               from './mask.pipe';
 import { MessageService }         from './message.service';
 import { MessagesComponent }      from './messages/messages.component';
+import { PinDialogComponent }     from './pin-dialog/pin-dialog.component';
+import { TrezorService }          from './trezor.service';
 
 
 @NgModule({
@@ -18,14 +21,16 @@ import { MessagesComponent }      from './messages/messages.component';
     AddressesComponent,
     AddressDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    PinDialogComponent,
+    MaskPipe
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule
   ],
-  providers: [AddressService, MessageService],
+  providers: [AddressService, MessageService, TrezorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

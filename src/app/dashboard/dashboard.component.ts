@@ -16,40 +16,27 @@ import { TrezorService }      from '../trezor.service';
 })
 export class DashboardComponent implements OnInit {
   addresses: Address[] = [];
-  devices: trezor.Device[] = [];
 
   constructor(
     private addressService: AddressService,
     private trezorService: TrezorService
-  ) { }
-
-  ngOnInit() {
-    this.getAddresses();
-    this.devices = this.trezorService.listDevices();
+  ) {
     this.trezorService.addObserver(this);
   }
 
-  onTrezorServiceEvent(e: string) {
-    console.log('onTrezorServiceEvent:', e);
-    if (e == "onDevicePin") {
-      $('#pinDialog').modal();
-    } else {
-      this.devices = this.trezorService.listDevices();
-    }
-  }
-
-  connectDevice(d: trezor.Device): boolean {
-    this.trezorService.connectDevice(d);
-    return false;
-  }
-
-  getAddresses(): void {
-    this.addressService.getAddresses()
-      .subscribe(addresses => this.addresses = addresses.slice(0, 4));
-  }
+  ngOnInit() { }
 
   onPINEntered(pin) {
     $('#pinDialog').modal('toggle');
     this.trezorService.pendingCallback(null, pin);
+  }
+
+  onTrezorServiceEvent(e: string) {
+    if (e == 'onDeviceSelected') {
+      var addresses: Address[] = [];
+      this.trezorService.listAddresses();
+    } else if (e == 'onDevicePin') {
+      $('#pinDialog').modal();
+    }
   }
 }

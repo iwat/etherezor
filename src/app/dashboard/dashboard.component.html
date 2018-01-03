@@ -1,11 +1,4 @@
 <div class="col">
-  <h3>Devices</h3>
-  <ul>
-    <li *ngFor="let device of devices">
-      <a (click)="connectDevice(device)" href="#">{{device.features.label}}</a>
-    </li>
-  </ul>
-
   <h3>Top Addresses</h3>
   <div class="grid grid-pad">
     <a *ngFor="let address of addresses"

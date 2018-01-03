@@ -6,10 +6,10 @@ import trezor = require('trezor.js');
 
 @Injectable()
 export class TrezorService {
-  connectedDevice: trezor.Device;
   deviceList: trezor.DeviceList;
   pendingCallback: any;
   observers: any[] = [];
+  selectedDevice: trezor.Device;
 
   constructor() {
     this.deviceList = new trezor.DeviceList();
@@ -23,22 +23,17 @@ export class TrezorService {
     this.observers.push(observer);
   }
 
-  public connectDevice(d: trezor.Device) {
-    if (d instanceof trezor.UnacquiredDevice) {
-      d.steal();
+  public listAddresses() {
+    if (this.selectedDevice == null || !this.selectedDevice.connected) {
+      console.warn('no device selected');
       return;
     }
 
-    d.waitForSessionAndRun(
-      (session) => {
-        return session.ethereumGetAddress(this.hdPath(44, 60, 0, 0, 0), false)
-      })
-      .then((result) => {
-        console.log('Address:', result.message.address);
-      })
-      .catch((error) => {
-        console.error('Call rejected:', error);
-      });
+    console.log('exporting');
+    this.selectedDevice
+      .waitForSessionAndRun((session) => { return session.getPublicKey(this.hdPath(44, 60, 0, 0)); })
+      .then((result) => { console.log(result); })
+      .catch((error) => { console.error('Call rejected:', error); });
   }
 
   public listDevices(): trezor.Device[] {
@@ -47,6 +42,11 @@ export class TrezorService {
       result.push(this.deviceList.devices[k]);
     }
     return result;
+  }
+
+  public selectDevice(d: trezor.Device) {
+    this.selectedDevice = d;
+    this.emitEvent('onDeviceSelected');
   }
 
   //
@@ -123,15 +123,14 @@ export class TrezorService {
     return setTimeout(callback, 1000);
   }
 
-  private hdPath(purpose: number, cointype: number, account: number, change: number, index: number): number[] {
+  private hdPath(purpose: number, cointype: number, account: number, change: number): number[] {
     const hardeningConstant = 0x80000000;
 
     return [
       (purpose | hardeningConstant) >>> 0,
       (cointype | hardeningConstant) >>> 0,
       (account | hardeningConstant) >>> 0,
-      change,
-      index
+      change
     ]
   }
 }

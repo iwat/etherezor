@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import trezor = require('trezor.js');
 
@@ -14,33 +14,29 @@ export class DeviceListComponent implements OnInit {
   devices: trezor.Device[] = [];
   selectedDevice: trezor.Device;
 
-  @Output() onDeviceSelected = new EventEmitter<trezor.Device>();
-
   constructor(private trezorService: TrezorService) { }
 
   ngOnInit() {
     this.devices = this.trezorService.listDevices();
     this.trezorService.addObserver(this);
-    this.selectFirstDevice();
+
+    if (this.devices.length > 0) {
+      this.selectDevice(this.devices[0]);
+    }
   }
 
   selectDevice(d: trezor.Device): boolean {
     this.selectedDevice = d;
-    this.onDeviceSelected.emit(d);
+    this.trezorService.selectDevice(d);
     return false;
   }
 
   onTrezorServiceEvent(e: string) {
     console.log('onTrezorServiceEvent:', e);
     this.devices = this.trezorService.listDevices();
-    this.selectFirstDevice();
-  }
 
-  private selectFirstDevice() {
-    if (this.devices.length > 0) {
+    if ((this.selectedDevice == null || !this.selectedDevice.connected) && this.devices.length > 0) {
       this.selectDevice(this.devices[0]);
-    } else {
-      this.selectDevice(null);
     }
   }
 }

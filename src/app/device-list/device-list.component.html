@@ -1,0 +1,18 @@
+<ng-container *ngIf="devices.length > 0;else noDevice">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <ng-container *ngIf="selectedDevice != null; else selectLabel">
+        {{selectedDevice.features.label}}
+      </ng-container>
+      <ng-template #selectLabel>
+        Select device
+      </ng-template>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let device of devices">
+      <a class="dropdown-item" href="#" (click)="selectDevice(device)">{{device.features.label}}</a>
+    </div>
+  </li>
+</ng-container>
+<ng-template #noDevice>
+  <li class="nav-item"><span class="nav-link">No device</span></li>
+</ng-template>

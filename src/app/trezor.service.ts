@@ -31,7 +31,7 @@ export class TrezorService {
 
     d.waitForSessionAndRun(
       (session) => {
-        return session.ethereumGetAddress(this.hdPath(44, 60, 0, 0, 0), true)
+        return session.ethereumGetAddress(this.hdPath(44, 60, 0, 0, 0), false)
       })
       .then((result) => {
         console.log('Address:', result.message.address);

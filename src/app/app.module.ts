@@ -13,6 +13,7 @@ import { MessageService }         from './message.service';
 import { MessagesComponent }      from './messages/messages.component';
 import { PinDialogComponent }     from './pin-dialog/pin-dialog.component';
 import { TrezorService }          from './trezor.service';
+import { DeviceListComponent } from './device-list/device-list.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TrezorService }          from './trezor.service';
     MessagesComponent,
     DashboardComponent,
     PinDialogComponent,
-    MaskPipe
+    MaskPipe,
+    DeviceListComponent
   ],
   imports: [
     AppRoutingModule,

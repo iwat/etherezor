@@ -8,7 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class PinDialogComponent implements OnInit {
   pin: string = "";
 
-  @Output() messageEvent = new EventEmitter<string>();
+  @Output() onPINEntered = new EventEmitter<string>();
 
   constructor() { }
 
@@ -20,6 +20,6 @@ export class PinDialogComponent implements OnInit {
   }
 
   unlock() {
-    this.messageEvent.emit(this.pin)
+    this.onPINEntered.emit(this.pin)
   }
 }

@@ -48,8 +48,8 @@ export class DashboardComponent implements OnInit {
       .subscribe(addresses => this.addresses = addresses.slice(0, 4));
   }
 
-  receiveMessage(event) {
+  onPINEntered(pin) {
     $('#pinDialog').modal('toggle');
-    this.trezorService.pendingCallback(null, event);
+    this.trezorService.pendingCallback(null, pin);
   }
 }

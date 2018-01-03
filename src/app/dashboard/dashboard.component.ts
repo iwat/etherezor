@@ -31,7 +31,16 @@ export class DashboardComponent implements OnInit {
 
   onTrezorServiceEvent(e: string) {
     console.log('onTrezorServiceEvent:', e);
-    this.devices = this.trezorService.listDevices();
+    if (e == "onDevicePin") {
+      $('#pinDialog').modal();
+    } else {
+      this.devices = this.trezorService.listDevices();
+    }
+  }
+
+  connectDevice(d: trezor.Device): boolean {
+    this.trezorService.connectDevice(d);
+    return false;
   }
 
   getAddresses(): void {

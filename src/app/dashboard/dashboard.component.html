@@ -2,7 +2,7 @@
   <h3>Devices</h3>
   <ul>
     <li *ngFor="let device of devices">
-      {{device.features.label}}
+      <a (click)="connectDevice(device)" href="#">{{device.features.label}}</a>
     </li>
   </ul>
 
